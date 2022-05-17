@@ -1,0 +1,11 @@
+/*/Project/.vscode
+/*/Project/.env
+/*/Project/node_modules
+
+/*/Project/coverage
+/*/Project/coverage.json
+/*/Project/typechain
+
+#Hardhat files
+cache
+artifacts

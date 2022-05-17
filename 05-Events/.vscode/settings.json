@@ -1,0 +1,5 @@
+{
+    "cSpell.language": "en,en-GB",
+    "mochaExplorer.files": "tests/**/*.js",
+    "mochaExplorer.require": "ts-node/register",
+}

@@ -20,7 +20,7 @@ function setupProvider() {
     alchemy: process.env.ALCHEMY_API_KEY,
     infura: infuraOptions,
   };
-  const provider = ethers.providers.getDefaultProvider("ropsten", options);
+  const provider = ethers.providers.getDefaultProvider("goerli", options);
   return provider;
 }
 

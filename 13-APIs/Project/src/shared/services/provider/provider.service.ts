@@ -37,4 +37,14 @@ export class ProviderService {
     const block = await this.provider.getBlock(blockHashOrTag);
     return block;
   }
+
+  async getTxStatusByHash(txHashOrTag: string) {
+    const receipt = await this.provider.getTransactionReceipt(txHashOrTag);
+    return receipt.status;
+  }
+
+  async getTxReceiptByHash(txHashOrTag: string) {
+    const receipt = await this.provider.getTransactionReceipt(txHashOrTag);
+    return receipt;
+  }
 }

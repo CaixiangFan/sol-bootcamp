@@ -94,7 +94,7 @@ export class ContractController {
     }
   }
 
-  @Get('allowance-of/:ownerAddress/:spenderAddress')
+  @Get('allowance-of/:ownerAddress:spenderAddress')
   @ApiOperation({
     summary: 'Allownce of owner to spender',
     description: 'Gets the allowance amount of the owner to the apender',

@@ -7,6 +7,7 @@ import { BlockModule } from './block/block.module';
 import { AccountModule } from './account/account.module';
 import { WalletModule } from './wallet/wallet.module';
 import { ContractModule } from './contract/contract.module';
+import { TransactionModule } from './transaction/transaction.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ContractModule } from './contract/contract.module';
     AccountModule,
     WalletModule,
     ContractModule,
+    TransactionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

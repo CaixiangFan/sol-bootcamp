@@ -46,7 +46,7 @@ export class ContractController {
       'Requests the server to mint a given amount of tokens to a provided address',
   })
   @ApiResponse({
-    status: 200,
+    status: 201,
     description: 'Token balance',
     type: Number,
   })
@@ -85,9 +85,37 @@ export class ContractController {
     description: 'The server is not connected to a valid provider',
     type: HttpException,
   })
-  async getTotalSupply() {
+  async getAllownceOf() {
     try {
       const result = await this.contractService.tokenTotalSupply();
+      return Number(result);
+    } catch (error) {
+      throw new HttpException(error.message, 503);
+    }
+  }
+
+  @Get('allowance-of/:ownerAddress/:spenderAddress')
+  @ApiOperation({
+    summary: 'Allownce of owner to spender',
+    description: 'Gets the allowance amount of the owner to the apender',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Allowance amount',
+    type: Number,
+  })
+  @ApiResponse({
+    status: 503,
+    description: 'The server is not connected to a valid provider',
+    type: HttpException,
+  })
+  async getAllowance(@Param('ownerAddress') ownerAddress: string,
+  @Param('spenderAddress') spenderAddress: string) {
+    try {
+      const result = await this.contractService.allownanceOf(
+        ownerAddress,
+        spenderAddress
+      );
       return Number(result);
     } catch (error) {
       throw new HttpException(error.message, 503);

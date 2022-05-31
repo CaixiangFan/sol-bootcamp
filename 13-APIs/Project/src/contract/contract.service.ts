@@ -49,4 +49,9 @@ export class ContractService {
    const totalSupply = await this.contractPublicInstance.totalSupply();
    return totalSupply;
  }
+
+ async allownanceOf(ownerAddress: string, spenderAddress: string) {
+  const allownce = await this.contractPublicInstance.allowance(ownerAddress, spenderAddress);
+  return allownce;
+ }
 }

@@ -14,8 +14,6 @@ export class BlockchainService {
   constructor() {
     this.provider = this.getProvider();
     this.userWallet = ethers.Wallet.createRandom().connect(this.provider);
-    // this.userWallet = new ethers.Wallet(process.env.PRIVATE_KEY);
-    // How to inject env varible in Angular applications at build time? Angular doesn't natively support accessing process.env.
     this.tokenContractInstance = new ethers.Contract(
       environment.tokenContractAddress,
       TokenContract.abi
@@ -94,9 +92,23 @@ export class BlockchainService {
   }
 
   watchUserBalanceToken(callbackFn: (...arg0: any) => void) {
-    const filterFrom = this.tokenContractInstance.filters["Transfer"](this.userWallet.address);
-    const filterTo = this.tokenContractInstance.filters["Transfer"](null, this.userWallet.address);
+    const filterFrom = this.tokenContractInstance.filters['Transfer'](
+      this.userWallet.address
+    );
+    const filterTo = this.tokenContractInstance.filters['Transfer'](
+      null,
+      this.userWallet.address
+    );
     this.tokenContractInstance.on(filterFrom, (event) => callbackFn(event));
     this.tokenContractInstance.on(filterTo, (event) => callbackFn(event));
+  }
+
+  async signTokenRequest(amount: number) {
+    const signatureObject = {
+      address: this.userWallet.address,
+      amount: amount,
+    };
+    const signatureMessage = JSON.stringify(signatureObject);
+    return await this.userWallet.signMessage(signatureMessage);
   }
 }
